@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTER THE MAGA MATRIX</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- 
+    FINAL STYLES
+    I've created a single '.terminal-box' style and applied it to all sections
+    for a unified, immersive, and mobile-friendly design.
+  -->
+  <style>
+    /* The Master Terminal Box Style */
+    .terminal-box {
+      background-color: #000000;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 15px rgba(0, 255, 0, 0.3);
+      padding: 2rem 1rem;
+      text-align: center;
+      animation: flicker 3s infinite;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    /* Flickering Animation */
+    @keyframes flicker {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 15px rgba(0, 255, 0, 0.3);
+        opacity: 1;
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.7), inset 0 0 20px rgba(0, 255, 0, 0.5);
+        opacity: 0.95;
+      }
+      52% {
+        opacity: 0.8;
+      }
+      55% {
+        opacity: 1;
+      }
+    }
+
+    /* Styling for Header and other Text inside Terminal Boxes */
+    .terminal-box h1, .terminal-box h2 {
+      color: #00ff00;
+      text-shadow: 0 0 8px #00ff00;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0;
+    }
+    .terminal-box h1 {
+      font-size: 3.5rem;
+    }
+    .terminal-box h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .terminal-box p {
+      color: #00ff00;
+      font-size: 1.1rem;
+    }
+    /* Crisp text for promises section */
+    #promises .terminal-box p {
+      color: #39ff14;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      text-shadow: none;
+    }
+
+#promises .terminal-box strong {
+  color: #adff2f;
+  text-shadow: none;
+}
+    .terminal-box .maga-red {
+      color: #ff0000;
+      text-shadow: 0 0 15px #ff0000, 0 0 5px #ff0000;
+    }
+    .terminal-box .subtitle {
+      color: #39ff14; /* Brighter green for subtitles */
+    }
+
+    /* Specific Styles for the scrollable promises box */
+    /* Specific Styles for the scrollable promises box */
+    #promises .terminal-box {
+      max-height: none;
+      overflow-y: visible;
+      text-align: left;
+      padding: 1.5rem 2rem;
+    }
+    #promises .terminal-box h3, #promises .terminal-box h4 {
+      color: #39ff14;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #00ff00;
+    }
+    #promises .terminal-box h3 {
+      border-bottom: 1px solid #00ff00;
+      padding-bottom: 5px;
+      margin-bottom: 1rem;
+    }
+    #promises .terminal-box strong {
+      color: #adff2f;
+    }
+
+    /* Enhanced Buttons and Pills */
+    .terminal-box .game-button {
+      padding: 1rem 2rem;
+      background: var(--blood-red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-family: 'Courier New', Courier, monospace;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px var(--blood-red);
+      transition: all 0.3s ease;
+    }
+    .terminal-box .game-button:hover {
+      box-shadow: 0 0 25px var(--blood-red), 0 0 10px #fff;
+      transform: scale(1.05);
+    }
+    .terminal-box .pill {
+      box-shadow: 0 0 10px; /* Base shadow */
+    }
+    .terminal-box .pill.red-pill {
+      box-shadow: 0 0 15px var(--blood-red);
+    }
+    .terminal-box .pill.blue-pill {
+      box-shadow: 0 0 15px var(--accent-blue);
+    }
+
+    /* Custom Scrollbar for Terminal */
+    .terminal-box::-webkit-scrollbar {
+      width: 10px;
+    }
+    .terminal-box::-webkit-scrollbar-track {
+      background: #000;
+      border-left: 1px solid #00ff00;
+    }
+    .terminal-box::-webkit-scrollbar-thumb {
+      background: #00ff00;
+      box-shadow: 0 0 5px #00ff00;
+    }
+    
+    /* Scanline Overlay Effect for scrollable promises box */
+    #promises .terminal-box::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 2;
+      background-size: 100% 3px, 4px 100%;
+      pointer-events: none;
+    }
+
+    /* Mobile-Friendly Adjustments */
+    @media (max-width: 768px) {
+      .terminal-box h1 {
+        font-size: 2.5rem;
+      }
+      .terminal-box h2 {
+        font-size: 1.8rem;
+      }
+      .terminal-box {
+        padding: 1.5rem 1rem;
+      }
+      #promises .terminal-box {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+   
+/* Pill Effect Overlays */
+.pill-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, 
+    rgba(139, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%);
+  z-index: 10000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pill-effect.blue-theme {
+  background: radial-gradient(circle at center, 
+    rgba(0, 123, 255, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%);
+}
+
+.pill-effect.active {
+  display: flex;
+  animation: fadeIn 0.5s forwards;
+}
+
+.effect-content {
+  text-align: center;
+  padding: 3rem;
+  max-width: 800px;
+}
+
+.effect-content h1 {
+  font-size: 3rem;
+  color: #ff0000;
+  margin-bottom: 2rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+}
+
+.blue-theme .effect-content h1 {
+  color: #007BFF;
+}
+
+.glitch-effect {
+  animation: glitchIntense 1s infinite;
+}
+
+@keyframes glitchIntense {
+  0%, 100% {
+    text-shadow: 2px 2px #ff0000, -2px -2px #00ff00;
+    transform: translate(0);
+  }
+  25% {
+    text-shadow: -2px 2px #ff0000, 2px -2px #00ff00;
+    transform: translate(-3px, 3px);
+  }
+  50% {
+    text-shadow: 2px -2px #ff0000, -2px 2px #00ff00;
+    transform: translate(3px, -3px);
+  }
+  75% {
+    text-shadow: -2px -2px #ff0000, 2px 2px #00ff00;
+    transform: translate(-3px, -3px);
+  }
+}
+
+.fade-effect {
+  animation: pulseFade 2s infinite;
+}
+
+@keyframes pulseFade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.typewriter {
+  font-size: 1.5rem;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+  margin: 1rem 0;
+  opacity: 0;
+  animation: typeIn 1s forwards;
+}
+
+.blue-theme .typewriter {
+  color: #00d4ff;
+}
+
+.typewriter.delay-1 {
+  animation-delay: 1s;
+}
+
+.typewriter.delay-2 {
+  animation-delay: 2s;
+}
+
+@keyframes typeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-effect-btn {
+  margin-top: 3rem;
+  padding: 1rem 3rem;
+  background: rgba(255, 0, 0, 0.3);
+  border: 2px solid #ff0000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: typeIn 1s forwards 3s;
+}
+
+.blue-theme .close-effect-btn {
+  background: rgba(0, 123, 255, 0.3);
+  border-color: #007BFF;
+}
+
+.close-effect-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+}
+
+.blue-theme .close-effect-btn:hover {
+  box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+</style>
+  </style>
+
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+  <div id="particles-container" class="particles-container"></div>
+
+  <!-- Main Welcome Section -->
+  <section id="home" class="section">
+    <div class="terminal-box">
+      <h1>THE <span class="maga-red">MAGA</span> MATRIX</h1>
+    </div>
+  </section>
+
+
+  <!-- Campaign Promises Link Section -->
+  <section id="promises-link" class="section">
+    <div class="terminal-box">
+      <h2>> CURRENT ADMINISTRATION CAMPAIGN PROMISES</h2>
+      <p class="subtitle">TRACKING THE PROMISES. EXPOSING THE REALITY.</p>
+      <a href="campaign-promises.html" class="game-button" style="display: inline-block; text-decoration: none;">
+        ACCESS PROMISE TRACKER
+      </a>
+    </div>
+  </section>
+
+  <!-- Memory Hole Link Section -->
+  <section id="memory-hole-link" class="section">
+    <div class="terminal-box">
+      <h2>> ENTER MEMORY HOLE</h2>
+      <p class="subtitle">FORGOTTEN EVENTS. VERIFIED TRUTHS. COLLECTIVE AMNESIA.</p>
+      <a href="memory-hole.html" class="game-button" style="display: inline-block; text-decoration: none;">
+        ACCESS MEMORY HOLE
+      </a>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section id="game" class="section">
+    <div class="terminal-box">
+      <h2>> ENGAGE THE SIMULATION</h2>
+      <p class="subtitle">THE AGENTS ARE COMING. ESCAPE THE MATRIX.</p>
+      <button onclick="startGame()" class="game-button">START RED PILL ESCAPE</button>
+    </div>
+  </section>
+
+  <!-- Uplink Section -->
+  <section id="uplink" class="section">
+    <div class="terminal-box">
+      <h2>> UPLINK TO FREEDOM</h2>
+      <p class="subtitle" style="margin-bottom: 1rem;">CHOOSE YOUR DESTINY</p>
+      <div class="pill-choice" style="display: flex; gap: 1rem; justify-content: center; margin: 1rem 0;">
+        <div class="pill red-pill" onclick="takeRedPill()">RED PILL</div>
+        <div class="pill blue-pill" onclick="takeBluePill()">BLUE PILL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pill Effect Overlays -->
+  <div id="red-pill-effect" class="pill-effect">
+    <div class="effect-content">
+      <h1 class="glitch-effect">WELCOME TO THE REAL WORLD</h1>
+      <p class="typewriter">You've chosen truth over comfort...</p>
+      <p class="typewriter delay-1">The Matrix can no longer hold you...</p>
+      <p class="typewriter delay-2">Freedom awaits, rebel.</p>
+      <button onclick="closeEffect()" class="close-effect-btn">CONTINUE</button>
+    </div>
+  </div>
+
+  <div id="blue-pill-effect" class="pill-effect blue-theme">
+    <div class="effect-content">
+      <h1 class="fade-effect">RETURNING TO SIMULATION</h1>
+      <p class="typewriter">Ignorance is bliss...</p>
+      <p class="typewriter delay-1">The story ends here...</p>
+      <p class="typewriter delay-2">You wake in your bed and believe whatever you want to believe.</p>
+      <button onclick="closeEffect()" class="close-effect-btn">WAKE UP</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
